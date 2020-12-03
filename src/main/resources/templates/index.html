@@ -1,5 +1,3 @@
- 
- 
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
@@ -24,13 +22,16 @@
         <a th:href="@{/}"><i class="iconfont icon-jiaoliu"></i>我要求职</a>
       </li>
       <li class="layui-nav-item">
-        <a th:href="@{/}"><i class="iconfont icon-iconmingxinganli"></i>我要招聘</a>
+        <a th:href="@{/company/index}"><i class="iconfont icon-iconmingxinganli"></i>我要招聘</a>
       </li>
       <li class="layui-nav-item">
-        <a th:href="@{/}"><i class="layui-icon layui-icon-group"></i>招聘会信息</a>
+        <a th:href="@{/jobfair}"><i class="layui-icon layui-icon-group"></i>招聘会信息</a>
       </li>
       <li class="layui-nav-item">
-        <a th:href="@{/}"><i class="layui-icon layui-icon-search"></i>兼职信息</a>
+        <a th:href="@{/parttimejob}"><i class="layui-icon layui-icon-search"></i>兼职信息</a>
+      </li>
+      <li class="layui-nav-item">
+        <a th:href="@{/admin/index}"><i class="layui-icon layui-icon-set"></i>后台管理</a>
       </li>
     </ul>
     
@@ -48,6 +49,9 @@
       <!-- 已登入的状态 -->
       <div sec:authorize="isAuthenticated()">
         <li class="layui-nav-item">
+          <span sec:authentication="name"></span>
+        </li>
+        <li class="layui-nav-item">
           <a method="post" th:href="@{/information}">个人信息</a>
         </li>
         <li class="layui-nav-item">
@@ -61,11 +65,11 @@
 <div class="fly-panel fly-column" th:fragment="seeker-topbar">
   <div class="layui-container">
     <ul class="layui-clear">
-      <li class="layui-hide-xs layui-this"><a th:href="@{/reg}">首页</a></li>
-      <li><a th:href="@{/reg}">搜索公司</a></li>
-      <li><a th:href="@{/reg}">搜索职位</a></li>
-      <li><a th:href="@{/reg}">我的简历</a></li>
-      <li><a th:href="@{/reg}">投递信息</a></li>
+      <li class="layui-hide-xs layui-this"><a th:href="@{/}">首页</a></li>
+      <li><a th:href="@{/seeker/company}">搜索公司</a></li>
+      <li><a th:href="@{/seeker/post}">搜索职位</a></li>
+      <li><a th:href="@{/seeker/recruit}">招聘信息</a></li>
+      <li><a th:href="@{/seeker/allcandidate}">投递信息</a></li>
     </ul> 
     
 <!--    <div class="fly-column-right layui-hide-xs"> -->
@@ -87,24 +91,24 @@
       <div class="fly-panel">
         <div class="fly-panel-title fly-filter">
           <a>热门职位</a>
-          <a th:href="@{/}" class="fly-right">更多职位></a>
+          <a th:href="@{/seeker/post}" class="fly-right">更多职位></a>
         </div>
         <ul class="fly-list">
           <li>
             <div class="layui-row">
               <div class="layui-col-md4">
-                <a th:href="@{/}" style="color: #01AAED;font-weight:bold;font-size: 20px;">部门经理</a>
+                <a th:href="@{/}" style="color: #01AAED;font-weight:bold;font-size: 20px;"><i class="layui-icon layui-icon-star-fill"></i>部门经理</a>
               </div>
               <div class="layui-col-md1 layui-col-md-offset7">
-                <a th:href="@{/}" style="color: #FF5722;font-weight:bold;font-size: 20px;">面议</a>
+                <a th:href="@{/}" style="color: #FF5722;font-weight:bold;font-size: 20px;"><i class="layui-icon layui-icon-rmb"></i>面议</a>
               </div>
             </div>
             <div class="layui-row">
               <div class="layui-col-md4">
-                <a th:href="@{/}" style="color: #01AAED;font-weight:bold;font-size: 15px;">腾讯</a>
+                <a th:href="@{/}" style="color: #01AAED;font-weight:bold;font-size: 15px;"><i class="layui-icon layui-icon-home"></i>腾讯</a>
               </div>
               <div class="layui-col-md1 layui-col-md-offset7">
-                <a th:href="@{/}" style="color: #3F3F3F;font-size: 15px;">天津</a>
+                <a th:href="@{/}" style="color: #3F3F3F;font-size: 15px;"><i class="layui-icon layui-icon-location"></i>天津</a>
               </div>
             </div>
           </li>
@@ -167,7 +171,7 @@
       <div class="fly-panel">
         <div class="fly-panel-title fly-filter">
           <a>热门公司</a>
-          <a th:href="@{/}" class="fly-right">更多公司></a>
+          <a th:href="@{/seeker/company}" class="fly-right">更多公司></a>
         </div>
         <div class="layui-row layui-col-space15">
           <div class="layui-col-md6">
@@ -258,7 +262,7 @@
   <p><a target="_blank">比奇堡小组</a> 2020 &copy; <a target="_blank">biqibao.com 出品</a></p>
 </div>
  
-<script th:src="/layui/layui.js"></script>
+<script th:src="@{/layui/layui.js}"></script>
 <script>
 
 </script>

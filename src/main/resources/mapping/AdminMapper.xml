@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.longlong.mapper.AdminMapper">
+
+    <resultMap id="BaseResultMap" type="com.longlong.entity.Admin">
+        <result column="userid" jdbcType="INTEGER" property="userid" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+    <select id="queryAdminByUserid" resultType="com.longlong.entity.Admin">
+        select * from candidate where userid = #{userid}
+    </select>
+
+    <select id="queryAdminByName" resultType="com.longlong.entity.Admin">
+        select * from candidate where name = #{name}
+    </select>
+
+    <select id="queryAllAdmin" resultType="com.longlong.entity.Admin">
+        select * from admin
+    </select>
+
+    <insert id="addAdmin" parameterType="Admin">
+        insert into admin(userid, name) values (#{userid},#{name})
+    </insert>
+
+    <update id="updateAdmin" parameterType="Admin">
+        update candidate set name=#{name} where userid=#{userid}
+    </update>
+
+    <delete id="deleteadmin" parameterType="Admin">
+        delete from admin where userid = #{userid}
+    </delete>
+
+</mapper>
